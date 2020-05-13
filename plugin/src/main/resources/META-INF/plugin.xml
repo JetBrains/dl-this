@@ -21,6 +21,9 @@
 
             <action id="DownloadAnyLink" class="DownloadAnyLink" text="Download Any Link"
                     description="Opens a pop-up where you can input links to download"/>
+
+            <action id="DownloadThisLink" class="DownloadThisLink" text="Download This Link"
+                    description="If your caret is placed to a link, downloads the link"/>
         </group>
     </actions>
 </idea-plugin>
