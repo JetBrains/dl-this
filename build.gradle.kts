@@ -11,6 +11,8 @@ allprojects {
 
     repositories {
         mavenCentral()
+        maven { setUrl("https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/") }
+        maven { setUrl("https://jitpack.io") }
     }
 
     tasks.withType<KotlinCompile<*>> {
