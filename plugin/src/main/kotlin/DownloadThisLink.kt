@@ -1,12 +1,12 @@
 import com.intellij.ide.impl.ProjectUtil
-import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.project.Project
 import com.intellij.pom.Navigatable
 import com.intellij.psi.PsiNamedElement
 
-class DownloadThisLink : AnAction() {
+class DownloadThisLink : DumbAwareAction() {
 
     override fun actionPerformed(event: AnActionEvent) {
         val currentProject = event.project ?: return

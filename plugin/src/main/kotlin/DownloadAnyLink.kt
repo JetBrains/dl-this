@@ -1,10 +1,10 @@
 import com.intellij.ide.impl.ProjectUtil
-import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.project.Project
 import ui.DownloadAnyLinkDialog
 
-class DownloadAnyLink : AnAction() {
+class DownloadAnyLink : DumbAwareAction() {
 
     override fun actionPerformed(event: AnActionEvent) {
         val currentProject = event.project ?: return
