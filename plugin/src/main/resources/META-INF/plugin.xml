@@ -16,9 +16,11 @@
     </extensions>
 
     <actions>
-        <action id="DownloadAnyLink" class="DownloadAnyLink" text="Download Any Link"
-                description="Opens a pop-up where you can input links to download">
+        <group id="DownloadThisActions" text="Download This" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
-        </action>
+
+            <action id="DownloadAnyLink" class="DownloadAnyLink" text="Download Any Link"
+                    description="Opens a pop-up where you can input links to download"/>
+        </group>
     </actions>
 </idea-plugin>
