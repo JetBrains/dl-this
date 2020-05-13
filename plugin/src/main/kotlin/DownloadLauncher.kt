@@ -23,7 +23,6 @@ object DownloadLauncher {
     private fun runDownloadInBackground(project: Project, link: String, destinationDir: String) {
         object : Task.Backgroundable(project, DOWNLOAD_IN_BACKGROUND_TITLE) {
             override fun run(indicator: ProgressIndicator) {
-                indicator.start()
                 try {
                     LOG.debug("Downloading '$link' to '$destinationDir'")
                     downloadByURL(link, destinationDir)
@@ -36,8 +35,6 @@ object DownloadLauncher {
                                 DOWNLOAD_ANY_LINK_CANT_RECOGNIZE_LINK_TITLE
                         )
                     }
-                } finally {
-                    indicator.stop()
                 }
             }
         }.queue()
