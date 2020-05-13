@@ -24,6 +24,9 @@
 
             <action id="DownloadThisLink" class="DownloadThisLink" text="Download This Link"
                     description="If your caret is placed to a link, downloads the link"/>
+
+            <action id="DownloadSelectedLink" class="DownloadSelectedLink" text="Download Selected Link"
+                    description="If your contains a selected text, treats the text as a link and downloads it"/>
         </group>
     </actions>
 </idea-plugin>
