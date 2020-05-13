@@ -50,7 +50,8 @@ class DownloadAnyLinkDialog(val project: Project, val destinationDir: String) : 
     }
 
     private fun extractLinks(): List<String> {
-        return listOf(linksEditor.editorField.text)  // todo: split links by line feeds
+        return linksEditor.editorField.text
+                .split("\n")
                 .map(String::trim)
                 .filter(String::isNotEmpty)
     }
