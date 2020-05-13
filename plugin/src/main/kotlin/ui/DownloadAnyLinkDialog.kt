@@ -49,8 +49,16 @@ class DownloadAnyLinkDialog(val project: Project, val destinationDir: String) : 
         }
     }
 
+    private fun extractLinks(): List<String> {
+        return listOf(linksEditor.editorField.text)  // todo: split links by line feeds
+                .map(String::trim)
+                .filter(String::isNotEmpty)
+    }
+
     override fun doValidate(): ValidationInfo? {
-        // todo: validate empty input
+        if (extractLinks().isEmpty()) {
+            return ValidationInfo(DOWNLOAD_ANY_LINK_VALIDATION_FAIL_TEXT)
+        }
 
         return null
     }
@@ -58,13 +66,13 @@ class DownloadAnyLinkDialog(val project: Project, val destinationDir: String) : 
     override fun doOKAction() {
         super.doOKAction()
 
-        val linkList = listOf(linksEditor.editorField.text)  // todo: split links by line feeds
-
+        val linkList = extractLinks()
         DownloadLauncher.runDownloadsInBackground(project, linkList, destinationDir)
     }
 
     companion object {
 
+        private const val DOWNLOAD_ANY_LINK_VALIDATION_FAIL_TEXT = "Please enter at least one link"
         private const val DOWNLOAD_ANY_LINK_OK_TEXT = "Download"
         private const val DOWNLOAD_ANY_LINK_MESSAGE = "Add links to download:"
         private const val DOWNLOAD_ANY_LINK_HINT = "One link per line (HTTP links, Magnet links, and info-hashes are supported)"
