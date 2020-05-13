@@ -28,7 +28,7 @@ object DownloadLauncher {
                     LOG.debug("Downloading '$link' to '$destinationDir'")
                     downloadByURL(link, destinationDir)
                 } catch (e: BadUrlException) {
-                    LOG.error("Downloading '$link' to '$destinationDir' failed", e)
+                    LOG.warn("Downloading '$link' to '$destinationDir' failed", e)
                     SwingUtilities.invokeLater {
                         Messages.showErrorDialog(
                                 project,
