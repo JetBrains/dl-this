@@ -11,7 +11,7 @@ fun getFileNameFromUrl(url: URL): String {
     return urlPath.substring(urlPath.lastIndexOf('/') + 1)
 }
 
-fun downloadByURL(urlValue: String, filePath: String = "", file_Name: String = "defaultSettings" ){
+fun downloadByURL(urlValue: String, filePath: String = "TestOutput/", file_Name: String = "defaultSettings" ){
     if ("http" !in urlValue) {
         throw BadUrlException()
     }
