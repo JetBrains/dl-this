@@ -3,6 +3,8 @@ import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
+import java.io.File
+import java.net.URLEncoder
 import javax.swing.SwingUtilities
 
 object DownloadLauncher {
@@ -25,7 +27,7 @@ object DownloadLauncher {
             override fun run(indicator: ProgressIndicator) {
                 try {
                     LOG.debug("Downloading '$link' to '$destinationDir'")
-                    downloadByURL(link, destinationDir)
+                    downloadByURL(link, File("$destinationDir/${link.toFileName()}"))
                 } catch (e: BadUrlException) {
                     LOG.warn("Downloading '$link' to '$destinationDir' failed", e)
                     SwingUtilities.invokeLater {
@@ -39,4 +41,6 @@ object DownloadLauncher {
             }
         }.queue()
     }
+
+    private fun String.toFileName() = URLEncoder.encode(this, Charsets.UTF_8.toString())
 }
