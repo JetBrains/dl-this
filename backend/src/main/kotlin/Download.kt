@@ -1,5 +1,6 @@
 
 import java.io.File
+import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLEncoder
@@ -10,7 +11,13 @@ import java.nio.file.StandardCopyOption
     val urlPath = url.path
     return urlPath.substring(urlPath.lastIndexOf('/') + 1)
 }*/
-private fun String.toFileName(): String = URLEncoder.encode(this, Charsets.UTF_8.toString())
+private fun String.toFileName(): String {
+    return if (this.lastIndex != this.length){
+        this.substring(this.lastIndexOf("/") + 1, this.length)
+    } else{
+        URLEncoder.encode(this, Charsets.UTF_8.toString())
+    }
+}
 
 internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusListener: (DownloadStatus) -> Unit) {
     val url = try {
@@ -19,11 +26,33 @@ internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusList
         statusListener(Failed("Bad HTTP url", urlValue, destinationDir))
         return
     }
+    var destinationFile = File(destinationDir, urlValue.toFileName())
+
+
+    val httpConn = url.openConnection() as HttpURLConnection
+    val disposition = httpConn.getHeaderField("Content-Disposition")
+
+    if (disposition != null) {
+        var fileName = ""
+        val index = disposition.indexOf("filename=")
+        if (index > 0) {
+            fileName = disposition.substring(index + 10, disposition.length - 1)
+            if( "\"" in fileName){
+                fileName = fileName.substring(0,fileName.indexOf("\""))
+            }
+        }
+        else{
+            fileName = httpConn.toString()
+            fileName = fileName.substring(fileName.lastIndexOf("/"))
+            if ("?" in fileName){
+                fileName = fileName.substring(0, fileName.indexOf("?"))
+            }
+        }
+        destinationFile = File(destinationDir, fileName)
+    }
 
     val inputStream = url.openStream()
-    val destinationFile = File(destinationDir, urlValue.toFileName())
     Files.copy(inputStream, destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
-
     statusListener(Finished(destinationFile.absolutePath, urlValue, destinationDir))
 }
 

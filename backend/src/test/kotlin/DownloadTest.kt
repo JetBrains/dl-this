@@ -6,7 +6,16 @@ import java.io.File
 class DownloadTest : FreeSpec({
 
     "downloadHttpLink" - {
-        "Download without extension".config(enabled = false) {
+        "Download without extension1" {
+            var lastStatus: DownloadStatus? = null
+            val url = "https://drive.google.com/uc?id=15oeobSlXnS4Ni0aSVDzePE2p2BgYH6Bd&export=download"
+
+            downloadHttpLink(url, File(".")) { lastStatus = it }
+            lastStatus.shouldBeInstanceOf<Finished> {
+                File(it.destinationFile).extension shouldBe "ipynb"
+            }
+        }
+        "Download without extension2" {
             var lastStatus: DownloadStatus? = null
             val url = "https://vk.com/doc132800647_548972002?hash=eccee483abefba8d39&dl=174d2cb1ea16038c30"
             downloadHttpLink(url, File(".")) { lastStatus = it }
