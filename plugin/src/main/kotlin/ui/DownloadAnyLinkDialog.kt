@@ -67,8 +67,9 @@ class DownloadAnyLinkDialog(val project: Project, val destinationDir: String) : 
     override fun doOKAction() {
         super.doOKAction()
 
-        val linkList = extractLinks()
-        DownloadLauncher.runDownloadsInBackground(project, linkList, destinationDir)
+        extractLinks().forEach { link ->
+            DownloadLauncher.runDownloadInBackground(project, link, destinationDir)
+        }
     }
 
     companion object {

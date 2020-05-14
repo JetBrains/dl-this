@@ -15,13 +15,7 @@ object DownloadLauncher {
 
     private const val DOWNLOAD_IN_BACKGROUND_TITLE = "Downloading this: %s"
 
-    fun runDownloadsInBackground(project: Project, links: Iterable<String>, destinationDir: String) {
-        links.forEach { link ->
-            runDownloadInBackground(project, link, destinationDir)
-        }
-    }
-
-    private fun runDownloadInBackground(project: Project, link: String, destinationDir: String) {
+    fun runDownloadInBackground(project: Project, link: String, destinationDir: String) {
         object : Task.Backgroundable(project, DOWNLOAD_IN_BACKGROUND_TITLE.format(link)) {
             override fun run(indicator: ProgressIndicator) {
                 LOG.debug("Downloading '$link' to '$destinationDir'")

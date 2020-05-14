@@ -11,7 +11,7 @@ class DownloadSelectedLink : DumbAwareAction() {
         val selectedText = event.getData(CommonDataKeys.CARET)?.selectedText
 
         if (selectedText != null) {
-            DownloadLauncher.runDownloadsInBackground(currentProject, listOf(selectedText), destinationDir)
+            DownloadLauncher.runDownloadInBackground(currentProject, selectedText, destinationDir)
         }
     }
 

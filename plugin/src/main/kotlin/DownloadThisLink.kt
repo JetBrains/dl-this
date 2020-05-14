@@ -15,7 +15,7 @@ class DownloadThisLink : DumbAwareAction() {
         if (data is PsiNamedElement && data.isWebReference) {
             val url = data.name ?: return
 
-            DownloadLauncher.runDownloadsInBackground(currentProject, listOf(url), destinationDir)
+            DownloadLauncher.runDownloadInBackground(currentProject, url, destinationDir)
         }
     }
 
