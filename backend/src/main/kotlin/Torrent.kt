@@ -1,14 +1,5 @@
-
-
-
 import com.turn.ttorrent.client.SimpleClient
 import java.net.InetAddress
-
-
-
-
-
-
 
 fun downloadTorrent(link: String = "", inputPath: String = "", outputPath: String = ""){
     if (link.isBlank() ){
@@ -26,12 +17,5 @@ fun downloadTorrent(link: String = "", inputPath: String = "", outputPath: Strin
         }
         client.stop()
     }
-
-
-
-    else{
-
-    }
-
 }
 

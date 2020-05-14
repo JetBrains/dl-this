@@ -41,6 +41,4 @@ object DownloadLauncher {
             }
         }.queue()
     }
-
-    private fun String.toFileName() = URLEncoder.encode(this, Charsets.UTF_8.toString())
 }
