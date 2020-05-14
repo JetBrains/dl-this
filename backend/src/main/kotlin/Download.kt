@@ -1,6 +1,7 @@
 import MimeTypes.getDefaultExt
 import java.io.File
 import java.io.IOException
+import java.lang.IllegalStateException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
@@ -22,7 +23,13 @@ private fun String.toFileName(): String {
 
 internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusListener: (DownloadStatus) -> Unit) {
     val url = try {
-        URL(urlValue)
+        if("http" !in urlValue){
+            URL("https://$urlValue")
+        }
+        else {
+            URL(urlValue)
+        }
+
     } catch (e: MalformedURLException) {
         statusListener(Failed("Bad HTTP url", urlValue, destinationDir))
         return
@@ -32,11 +39,17 @@ internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusList
 
     val httpConn = url.openConnection() as HttpURLConnection
     val disposition = httpConn.getHeaderField("Content-Disposition")
-    val contentType= httpConn.getHeaderField("Content-Type")
+    val contentType: String = try {
+        httpConn.getHeaderField("Content-Type")
+    } catch (e: IllegalStateException){
+        statusListener(Failed("Nothing to download", urlValue, destinationDir))
+        return
+    }
+
     val ext = getDefaultExt(contentType.substringBefore(";"))
     var indexFlag = false
     if (disposition != null) {
-        var fileName = ""
+        var fileName: String
         val index = disposition.indexOf("filename=")
         if (index > 0) {
             indexFlag = true

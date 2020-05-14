@@ -53,7 +53,7 @@ class DownloadTest : FreeSpec({
                 File(it.destinationFile).extension shouldBe "html"
             }
         }
-        "Download without protocol (HTML page)2".config(enabled = false) {
+        "Download without protocol (HTML page)2" {
             var lastStatus: DownloadStatus? = null
             val url = "example.com"
             downloadHttpLink(url, File(".")) { lastStatus = it }
