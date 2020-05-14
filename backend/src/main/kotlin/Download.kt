@@ -1,5 +1,6 @@
 
 import java.io.File
+import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
@@ -41,18 +42,22 @@ internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusList
             if( "\"" in fileName){
                 fileName = fileName.substringBefore("\"")
             }
-        }
-        else{
+        } else {
             fileName = httpConn.toString()
             fileName = fileName.substring(fileName.lastIndexOf("/"))
-            if ("?" in fileName){
+            if ("?" in fileName) {
                 fileName = fileName.substring(0, fileName.indexOf("?"))
             }
         }
         destinationFile = File(destinationDir, fileName)
     }
 
-    val inputStream = url.openStream()
+    val inputStream = try {
+        url.openStream()
+    } catch (e: IOException) {
+        statusListener(Failed("Can't connect", urlValue, destinationDir))
+        return
+    }
     Files.copy(inputStream, destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
     statusListener(Finished(destinationFile.absolutePath, urlValue, destinationDir))
 }
