@@ -12,7 +12,7 @@ import java.nio.file.StandardCopyOption
     return urlPath.substring(urlPath.lastIndexOf('/') + 1)
 }*/
 private fun String.toFileName(): String {
-    return if (this.lastIndex != this.length){
+    return if (this.lastIndexOf("/") != this.length && "/" in this ){
         this.substring(this.lastIndexOf("/") + 1, this.length)
     } else{
         URLEncoder.encode(this, Charsets.UTF_8.toString())
@@ -31,6 +31,7 @@ internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusList
 
     val httpConn = url.openConnection() as HttpURLConnection
     val disposition = httpConn.getHeaderField("Content-Disposition")
+    val contentType= httpConn.getHeaderField("Content-Type")
 
     if (disposition != null) {
         var fileName = ""
@@ -38,7 +39,7 @@ internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusList
         if (index > 0) {
             fileName = disposition.substring(index + 10, disposition.length - 1)
             if( "\"" in fileName){
-                fileName = fileName.substring(0,fileName.indexOf("\""))
+                fileName = fileName.substringBefore("\"")
             }
         }
         else{
