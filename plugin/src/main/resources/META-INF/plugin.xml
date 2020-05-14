@@ -16,7 +16,7 @@
     </extensions>
 
     <actions>
-        <group id="DownloadThisActions" text="Download This" popup="true">
+        <group id="DownloadThisActions" text="Download This" popup="true" icon="AllIcons.Actions.Download">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
 
             <action id="DownloadAnyLink" class="DownloadAnyLink" text="Download Any Link"
