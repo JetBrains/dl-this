@@ -11,9 +11,13 @@ import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.UIUtil
 import java.awt.Font
 
-class DownloadAnyLinkDialog(val project: Project, val destinationDir: String) : DialogWrapper(project, true) {
+class DownloadAnyLinkDialog(
+        private val project: Project,
+        private val destinationDir: String,
+        initialText: String
+) : DialogWrapper(project, true) {
 
-    val linksEditor = createLinksEditor()
+    private val linksEditor = createLinksEditor(initialText)
 
     init {
         Disposer.register(disposable, linksEditor)
@@ -33,10 +37,11 @@ class DownloadAnyLinkDialog(val project: Project, val destinationDir: String) : 
 
     override fun getDimensionServiceKey() = DownloadAnyLinkDialog::class.simpleName
 
-    private fun createLinksEditor(): LinksEditor {
+    private fun createLinksEditor(initialText: String): LinksEditor {
         return LinksEditor(project).apply {
             editorField.apply {
                 setCaretPosition(0)
+                text = initialText
                 addSettingsProvider {
                     // display at least several rows
                     val MIN_ROWS = 3
