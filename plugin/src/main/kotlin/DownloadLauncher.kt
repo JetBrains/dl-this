@@ -22,7 +22,7 @@ object DownloadLauncher {
     }
 
     private fun runDownloadInBackground(project: Project, link: String, destinationDir: String) {
-        object : Task.Backgroundable(project, DOWNLOAD_IN_BACKGROUND_TITLE) {
+        object : Task.Backgroundable(project, DOWNLOAD_IN_BACKGROUND_TITLE.format(link)) {
             override fun run(indicator: ProgressIndicator) {
                 LOG.debug("Downloading '$link' to '$destinationDir'")
                 download(link, File(destinationDir)) {
