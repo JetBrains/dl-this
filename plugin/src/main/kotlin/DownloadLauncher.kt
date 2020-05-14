@@ -39,9 +39,11 @@ object DownloadLauncher {
                             )
                         }
 
-                        is Finished -> {
-                            // todo
-                        }
+                        is Finished -> DownloadFinishNotifier.notify(
+                                project = project,
+                                title = "Download finished",
+                                content = """<a href="${it.destinationFile}">${it.destinationFile}</a>"""  // todo: make it openable by IDE
+                        )
                     }
                 }
             }
