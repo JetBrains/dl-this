@@ -20,12 +20,15 @@
             <add-to-group group-id="ToolsMenu" anchor="last"/>
 
             <action id="DownloadAnyLink" class="DownloadAnyLink" text="Download Any Link"
+                    icon="AllIcons.Actions.Download"
                     description="Opens a pop-up where you can input links to download"/>
 
             <action id="DownloadThisLink" class="DownloadThisLink" text="Download This Link"
+                    icon="AllIcons.Actions.Download"
                     description="If your caret is placed to a link, downloads the link"/>
 
             <action id="DownloadSelectedLink" class="DownloadSelectedLink" text="Download Selected Link"
+                    icon="AllIcons.Actions.Download"
                     description="If your contains a selected text, treats the text as a link and downloads it"/>
         </group>
     </actions>
