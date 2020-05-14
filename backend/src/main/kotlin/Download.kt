@@ -1,4 +1,4 @@
-
+import MimeTypes.getDefaultExt
 import java.io.File
 import java.io.IOException
 import java.net.HttpURLConnection
@@ -14,7 +14,7 @@ import java.nio.file.StandardCopyOption
 }*/
 private fun String.toFileName(): String {
     return if (this.lastIndexOf("/") != this.length && "/" in this ){
-        this.substring(this.lastIndexOf("/") + 1, this.length)
+        this.substringAfterLast("/")
     } else{
         URLEncoder.encode(this, Charsets.UTF_8.toString())
     }
@@ -33,23 +33,31 @@ internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusList
     val httpConn = url.openConnection() as HttpURLConnection
     val disposition = httpConn.getHeaderField("Content-Disposition")
     val contentType= httpConn.getHeaderField("Content-Type")
-
+    val ext = getDefaultExt(contentType.substringBefore(";"))
+    var indexFlag = false
     if (disposition != null) {
         var fileName = ""
         val index = disposition.indexOf("filename=")
         if (index > 0) {
+            indexFlag = true
             fileName = disposition.substring(index + 10, disposition.length - 1)
             if( "\"" in fileName){
                 fileName = fileName.substringBefore("\"")
             }
-        } else {
+        } else{
             fileName = httpConn.toString()
             fileName = fileName.substring(fileName.lastIndexOf("/"))
-            if ("?" in fileName) {
+            if ("?" in fileName){
                 fileName = fileName.substring(0, fileName.indexOf("?"))
             }
         }
         destinationFile = File(destinationDir, fileName)
+    }
+
+    if (ext != "unknown" && !indexFlag){
+        if (destinationFile.extension != ext){
+            destinationFile = File(destinationDir, "${urlValue.toFileName()}.$ext")
+        }
     }
 
     val inputStream = try {

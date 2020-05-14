@@ -45,7 +45,7 @@ class DownloadTest : FreeSpec({
             downloadHttpLink(url, File(".")) { lastStatus = it }
             lastStatus.shouldBeInstanceOf<Failed>()
         }
-        "Download without protocol (HTML page)1".config(enabled = false) {
+        "Download without protocol (HTML page)1" {
             var lastStatus: DownloadStatus? = null
             val url = "https://example.com"
             downloadHttpLink(url, File(".")) { lastStatus = it }
