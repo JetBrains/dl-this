@@ -2,10 +2,13 @@ package ui
 
 import DownloadLauncher
 import com.intellij.openapi.editor.impl.EditorImpl
+import com.intellij.openapi.fileChooser.FileChooser
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.ValidationInfo
 import com.intellij.openapi.util.Disposer
+import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
 import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.UIUtil
@@ -13,11 +16,12 @@ import java.awt.Font
 
 class DownloadAnyLinkDialog(
         private val project: Project,
-        private val destinationDir: String,
+        private val defaultDestinationDir: String,
         initialText: String
 ) : DialogWrapper(project, true) {
 
     private val linksEditor = createLinksEditor(initialText)
+    private val downloadInProjectRoot = JBCheckBox(DOWNLOAD_IN_PROJECT_ROOT_TEXT, true)
 
     init {
         Disposer.register(disposable, linksEditor)
@@ -31,7 +35,10 @@ class DownloadAnyLinkDialog(
     override fun createCenterPanel() = JBUI.Panels.simplePanel(UIUtil.DEFAULT_HGAP, UIUtil.DEFAULT_VGAP)
             .addToTop(JBLabel(DOWNLOAD_ANY_LINK_MESSAGE).apply { font = font.deriveFont(Font.BOLD) })
             .addToCenter(linksEditor)
-            .addToBottom(JBLabel(DOWNLOAD_ANY_LINK_HINT).apply { font = font.deriveFont(Font.ITALIC) })
+            .addToBottom(JBUI.Panels.simplePanel(UIUtil.DEFAULT_HGAP, UIUtil.DEFAULT_VGAP)
+                    .addToCenter(JBLabel(DOWNLOAD_ANY_LINK_HINT).apply { font = font.deriveFont(Font.ITALIC) })
+                    .addToBottom(downloadInProjectRoot)
+            )
 
     override fun getPreferredFocusedComponent() = linksEditor.editorField
 
@@ -72,6 +79,15 @@ class DownloadAnyLinkDialog(
     override fun doOKAction() {
         super.doOKAction()
 
+        val destinationDir = when (downloadInProjectRoot.isSelected) {
+            true -> defaultDestinationDir
+            false -> {
+                val folderDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor()
+                val chosenFolder = FileChooser.chooseFile(folderDescriptor, project, null)
+                chosenFolder?.canonicalPath ?: defaultDestinationDir
+            }
+        }
+
         extractLinks().forEach { link ->
             DownloadLauncher.runDownloadInBackground(project, link, destinationDir)
         }
@@ -79,6 +95,7 @@ class DownloadAnyLinkDialog(
 
     companion object {
 
+        private const val DOWNLOAD_IN_PROJECT_ROOT_TEXT = "Download to project root"
         private const val DOWNLOAD_ANY_LINK_VALIDATION_FAIL_TEXT = "Please enter at least one link"
         private const val DOWNLOAD_ANY_LINK_OK_TEXT = "Download"
         private const val DOWNLOAD_ANY_LINK_MESSAGE = "Add links to download:"
