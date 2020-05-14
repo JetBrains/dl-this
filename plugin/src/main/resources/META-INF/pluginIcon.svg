@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" style="background-color: rgb(255, 255, 255);" version="1.1" width="40px"
+     height="40px" viewBox="-2 -2 40 40"
+     content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-05-14T20:40:46.712Z&quot; agent=&quot;5.0 (Windows)&quot; etag=&quot;uCgaPqfIOlYI06rWKKF2&quot; version=&quot;13.1.1&quot;&gt;&lt;diagram id=&quot;Ej5xnymrgMpRK1hBaO7x&quot; name=&quot;Page-1&quot;&gt;zVVNj5swEP01HFsBTpq9brLJ9tBKVTms2puFZ8Fb40HGLEl/fU0YPrwQpVvl0API8zwznpn3DAHbFcdHw8v8KwpQQRyKY8AegjiO1hv3boFTB9yRnRkpyGUEEvkbCAwJraWAynO0iMrK0gdT1BpS62HcGGx8t2dU/qklz2AGJClXc/RJCpt36Coc4c8gs9z6eMF7TwKqnAtsJhDbB2xnEG23Ko47UO3c+qF0cYcLu0NVBrT9m4C7UuX6R8l+CnzRGX9M0v3TB8ryylVN3VKx9tS3b7DWAtokUcC2TS4tJCVP293G0e2w3BaKtitr8NcwJjYgO1RozvlYGDL3uJ1n1PYSTiqIV2QfeCFVK58vdSoFdxXuUFfY1rilFsBYOF6cTTRM3KkUsABrTs6FAlgXcPKsZiSbrToonxDdY5zklQ1ZRxLcgnh4Byfr65yAFvetsp2FJWifg2vzWprvEg+LzEX3M5bdXLeuoINs23xoI1MsZErrl7ooE6pco4ZzODd9BZ8GAkHMruFV+iYUrcM5RT1mQHErX/30S7zRCd9QuoMHdUTxx7UnkP7L1KeosDYpUNT0Cl5LxN4kcoPJwM4SnWU0tP3vytq8S1nE1ux2LynitpqbKsv//EyVdZZRX+z++0RbEyn+79qKNzfS1izRzbTlzPEv1bmPv3m2/wM=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <rect x="1" y="1" width="34" height="34" rx="5.1" ry="5.1" fill="#eee" stroke="#003300" stroke-width="3"
+              pointer-events="all"/>
+        <path d="M 10.5 8 L 10.5 23.53" fill="none" stroke="#00331a" stroke-width="2" stroke-miterlimit="10"
+              pointer-events="stroke"/>
+        <path d="M 6.5 17.76 L 10.5 25.76 L 14.5 17.76" fill="none" stroke="#00331a" stroke-width="2"
+              stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 25.5 8 L 25.5 28" fill="none" stroke="#00331a" stroke-width="2" stroke-miterlimit="10"
+              pointer-events="stroke"/>
+        <path d="M 30 12.5 L 21 12.5" fill="none" stroke="#00331a" stroke-width="2" stroke-miterlimit="10"
+              pointer-events="all"/>
+    </g>
+</svg>
