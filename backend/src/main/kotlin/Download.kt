@@ -1,7 +1,6 @@
 import MimeTypes.getDefaultExt
 import java.io.File
 import java.io.IOException
-import java.lang.IllegalStateException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
@@ -83,7 +82,8 @@ internal fun downloadHttpLink(urlValue: String, destinationDir: File, statusList
     statusListener(Finished(destinationFile.absolutePath, urlValue, destinationDir))
 }
 
-private fun isMagnetLink(query: String) = false
+private fun isLocalTorrentFile(query: String) = File(query).let { it.exists() && it.extension == "torrent" }
+private fun isMagnetLink(query: String) = query.startsWith("magnet:")
 private fun isTorrentHash(query: String) = false
 private fun isCurlQuery(query: String) = query.startsWith("curl ")
 private fun isHttpLink(query: String) = query.startsWith("http")  // todo: HTTP links can omit HTTP prefix
@@ -95,6 +95,7 @@ fun download(query: String, destinationDir: File, statusListener: (DownloadStatu
     }
 
     when {
+        isLocalTorrentFile(query) -> downloadTorrent(File(query), destinationDir, statusListener)
         isMagnetLink(query) -> statusListener(Failed("Magnet links are not supported now", query, destinationDir))
         isTorrentHash(query) -> statusListener(Failed("Torrent hashes are not supported now", query, destinationDir))
         isCurlQuery(query) -> statusListener(Failed("Curl queries are not supported now", query, destinationDir))

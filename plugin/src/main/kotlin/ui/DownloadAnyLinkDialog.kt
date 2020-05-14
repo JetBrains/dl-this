@@ -82,7 +82,7 @@ class DownloadAnyLinkDialog(
         private const val DOWNLOAD_ANY_LINK_VALIDATION_FAIL_TEXT = "Please enter at least one link"
         private const val DOWNLOAD_ANY_LINK_OK_TEXT = "Download"
         private const val DOWNLOAD_ANY_LINK_MESSAGE = "Add links to download:"
-        private const val DOWNLOAD_ANY_LINK_HINT = "One link per line (HTTP links, Magnet links, and info-hashes are supported)"
+        private const val DOWNLOAD_ANY_LINK_HINT = "One link per line (HTTP links and local torrent files are supported)"
         private const val DOWNLOAD_ANY_LINK_TITLE = "Download Any Link"
     }
 }

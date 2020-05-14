@@ -1,38 +1,23 @@
 import com.turn.ttorrent.client.SimpleClient
-import java.net.InetAddress
-import com.turn.ttorrent.tracker.TrackedTorrent
-import com.turn.ttorrent.tracker.Tracker
 import java.io.File
-import java.io.FilenameFilter
+import java.net.InetAddress
 
+private val client = SimpleClient()
 
-
-fun downloadTorrent(link: String = "", inputPath: String = "", outputPath: String = ""){
-    if (link.isBlank() ){
-        val client = SimpleClient()
+fun downloadTorrent(torrentFile: File, destinationDir: File, statusListener: (DownloadStatus) -> Unit) {
+    try {
         val address = InetAddress.getLocalHost()
-
-        try {
-            client.downloadTorrent(inputPath,
-                    outputPath,
-                    address)
-            //download finished
-        } catch (e: Exception) {
-            //download failed, see exception for details
-            e.printStackTrace()
-        }
+        client.downloadTorrent(torrentFile.absolutePath, destinationDir.absolutePath, address)
         client.stop()
-
-       /* val tracker = Tracker(6969)
-        val filter = FilenameFilter { _, name -> name.endsWith(".torrent") }
-
-        for (f in File(inputPath).listFiles(filter)) {
-            tracker.announce(TrackedTorrent.load(f))
-        }
-        tracker.setAcceptForeignTorrents(true)
-        tracker.start(true)
-        tracker.stop()*/
-
+    } catch (e: Exception) {
+        statusListener(Failed("Can't download torrent", torrentFile.absolutePath, destinationDir))
+        return
     }
+
+    statusListener(Finished(
+            destinationFile = destinationDir.absolutePath,
+            query = torrentFile.absolutePath,
+            destinationDir = destinationDir
+    ))
 }
 
