@@ -5,9 +5,12 @@ A plugin for IDEs to download files.
 
 ## Main features
 * Three new actions:
-    * `Download Any Link` opens a dialog where you can input some links to download. [TODO: SCREENSHOT]
-    * `Download This Link` is available when the caret is placed to a link in an editor. [TODO: SCREENSHOT]
-    * `Download Selected Link` is available when some text in an editor is selected. [TODO: SCREENSHOT]
+    * `Download Any Link` opens a dialog where you can input some links to download.
+    ![DAL Screenshot](docs/screenshots/DownloadAnyLink.png)
+    * `Download This Link` is available when the caret is placed to a link in an editor.
+    ![DTL Screenshot](docs/screenshots/DownloadThisLink.png)
+    * `Download Selected Link` is available when some text in an editor is selected.
+    ![DSL Screenshot](docs/screenshots/DownloadSelectedLink.png)
 * Supported types of links:
     * HTTP/HTTPS.
     * BitTorrent (requires specifying a path to a local `torrent` file).
