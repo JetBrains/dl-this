@@ -36,3 +36,6 @@ A plugin for IDEs to download files.
     * Now we use the default package. Decide which package we use (can we use `com.intellij.downloadThis`?).
     * Which licence should we use? Maybe Apache 2.0?
     * Now we use TeamCity TestDrive which will end soon. Switch to a persistent build server.
+
+## Similar plugins
+[Download Selection](https://plugins.jetbrains.com/plugin/7250-download-selection) provides only an action to download selected link, crashes when a bad link is selected, lacks open-source code, and supports only HTTP.
