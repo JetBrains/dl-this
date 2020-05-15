@@ -14,7 +14,7 @@ import java.nio.file.StandardCopyOption
 }*/
 private fun String.toFileName(): String {
     return if (this.lastIndexOf("/") != this.length && "/" in this ){
-        this.substringAfterLast("/")
+        URLEncoder.encode(this.substringAfterLast("/"), Charsets.UTF_8.toString())
     } else{
         URLEncoder.encode(this, Charsets.UTF_8.toString())
     }
