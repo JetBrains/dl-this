@@ -26,12 +26,14 @@ A plugin for IDEs to download files.
     * Support parsing of `curl` and `wget` commands.
     * Show download initial status and progress.
     * Allow stopping downloading.
+    * Run `reload from disk` automatically after downloads.
 * Fix issues:
     * Sometimes when minimizing and maximizing the IDE, the plugin disappears (no idea why).
     * Plugin isn't dynamic (`Plugin DevKit | Plugin descriptor | Plugin.xml dynamic plugin verification` doesn't find any errors, but the IDE asks to restart after deactivation and activation of the plugin).
     * Messages are "hardcoded" (maybe we can use the `bundle` concept, but can't find any guides how to use it).
 * Don't use blocking calls (for example, switch to coroutines).
 * Add plugin tests.
+* Since not only links supported, remove `Link` word from names of actions.
 * Publish as an open-source project:
     * Now we use the default package. Decide which package we use (can we use `com.intellij.downloadThis`?).
     * Which licence should we use? Maybe Apache 2.0?
