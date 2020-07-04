@@ -1,3 +1,5 @@
+[![JetBrains team project](http://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+
 # Download This
 A plugin for IDEs to download files.
 
