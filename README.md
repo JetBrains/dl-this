@@ -17,6 +17,20 @@ A plugin for IDEs to download files.
     * HTTP/HTTPS.
     * BitTorrent (requires specifying a path to a local `torrent` file).
 
+## Running
+```shell script
+./gradlew :plugin:runIde
+```
+
+This will open a sandbox-IDE with this plugin installed.
+
+## Building
+```shell script
+./gradlew :plugin:buildPlugin
+```
+
+The plugin distribution file will appear in `plugin/build/distributions` dir.
+
 ## Many things yet to improve
 * Introduce features:
     * Show `Download This Link` and `Download Selected Link` as context actions.
