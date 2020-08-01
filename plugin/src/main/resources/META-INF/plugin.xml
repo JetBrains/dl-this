@@ -24,7 +24,7 @@
 <idea-plugin>
     <id>org.example.dl-this.plugin</id>
     <name>Download This</name>
-    <vendor>Example Org</vendor>
+    <vendor>JetBrains</vendor>
 
     <description><![CDATA[
     A plugin for IDEs to <em>download files</em>.
