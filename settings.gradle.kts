@@ -27,7 +27,7 @@ pluginManagement {
 
     repositories {
         mavenCentral()
-        maven { setUrl("https://plugins.gradle.org/m2/") }
+        maven("https://plugins.gradle.org/m2/")
     }
 
     plugins {
