@@ -1,3 +1,5 @@
+package org.jetbrains.downloadThis
+
 import com.intellij.ide.impl.ProjectUtil
 import com.intellij.openapi.project.Project
 

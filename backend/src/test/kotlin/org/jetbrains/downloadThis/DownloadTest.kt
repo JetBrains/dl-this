@@ -1,3 +1,5 @@
+package org.jetbrains.downloadThis
+
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe

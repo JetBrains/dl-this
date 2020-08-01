@@ -1,4 +1,6 @@
-import java.util.HashMap
+package org.jetbrains.downloadThis
+
+import java.util.*
 
 /**
  * Map file extensions to MIME types. Based on the Apache mime.types file.

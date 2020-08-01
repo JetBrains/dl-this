@@ -1,4 +1,6 @@
-import MimeTypes.getDefaultExt
+package org.jetbrains.downloadThis
+
+import org.jetbrains.downloadThis.MimeTypes.getDefaultExt
 import java.io.File
 import java.io.IOException
 import java.net.HttpURLConnection

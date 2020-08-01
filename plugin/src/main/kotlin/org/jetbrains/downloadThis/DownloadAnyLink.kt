@@ -1,8 +1,11 @@
+package org.jetbrains.downloadThis
+
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.project.DumbAwareAction
+import org.jetbrains.downloadThis.ui.DownloadAnyLinkDialog
 
-class DownloadSelectedLink : DumbAwareAction() {
+class DownloadAnyLink : DumbAwareAction() {
 
     override fun actionPerformed(event: AnActionEvent) {
         val currentProject = event.project ?: return
@@ -10,14 +13,6 @@ class DownloadSelectedLink : DumbAwareAction() {
 
         val selectedText = event.getData(CommonDataKeys.CARET)?.selectedText
 
-        if (selectedText != null) {
-            DownloadLauncher.runDownloadInBackground(currentProject, selectedText, destinationDir)
-        }
-    }
-
-    override fun update(event: AnActionEvent) {
-        val data = event.getData(CommonDataKeys.CARET)
-
-        event.presentation.isEnabledAndVisible = data?.hasSelection() ?: false
+        DownloadAnyLinkDialog(currentProject, destinationDir, selectedText.orEmpty()).show()
     }
 }

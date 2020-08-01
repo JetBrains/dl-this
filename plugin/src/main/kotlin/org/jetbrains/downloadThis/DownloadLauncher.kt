@@ -1,3 +1,5 @@
+package org.jetbrains.downloadThis
+
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.Task

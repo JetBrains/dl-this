@@ -1,6 +1,5 @@
-package ui
+package org.jetbrains.downloadThis.ui
 
-import DownloadLauncher
 import com.intellij.openapi.editor.impl.EditorImpl
 import com.intellij.openapi.fileChooser.FileChooser
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
@@ -12,6 +11,7 @@ import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.components.JBLabel
 import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.UIUtil
+import org.jetbrains.downloadThis.DownloadLauncher
 import java.awt.Font
 
 class DownloadAnyLinkDialog(

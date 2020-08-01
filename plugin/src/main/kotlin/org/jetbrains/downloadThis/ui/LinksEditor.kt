@@ -1,4 +1,4 @@
-package ui
+package org.jetbrains.downloadThis.ui
 
 import com.intellij.ide.ui.LafManager
 import com.intellij.ide.ui.LafManagerListener

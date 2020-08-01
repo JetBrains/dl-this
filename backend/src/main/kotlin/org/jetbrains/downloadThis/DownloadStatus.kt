@@ -1,3 +1,5 @@
+package org.jetbrains.downloadThis
+
 import java.io.File
 
 sealed class DownloadStatus(val query: String, val destinationDir: File)
