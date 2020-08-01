@@ -22,14 +22,17 @@ A plugin for IDEs to download files.
 * Installation of separate applications is slower than installation of the plugin. By separate applications we mean a Torrent Client, but in the future we want to support the syntax of `wget` and `curl` commands that can be missing in Windows, for example.
 * If you are using an IDE via remote access which supports only a single application (such as [Projector](https://github.com/JetBrains/projector-server/blob/master/docs/Projector.md)), the plugin seems to be the single visual way to download files from the Internet to the host.
 
-## Running
+## Installation
+Just download a [release](https://github.com/JetBrains/dl-this/releases) and then choose this Zip file in Plugins | Install plugin from disk.
+
+## Running from source
 ```shell script
 ./gradlew :plugin:runIde
 ```
 
 This will open a sandbox-IDE with this plugin installed.
 
-## Building
+## Building from source
 ```shell script
 ./gradlew :plugin:buildPlugin
 ```
